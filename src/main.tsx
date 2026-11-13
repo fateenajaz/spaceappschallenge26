@@ -1,0 +1,10 @@
+import { createRoot } from "react-dom/client";
+import App from "./app/App";
+import "@fontsource/ibm-plex-mono/latin-400.css";
+import "@fontsource/public-sans/latin-400.css";
+import "@fontsource/public-sans/latin-600.css";
+import "@fontsource/public-sans/latin-700.css";
+import "@fontsource/public-sans/latin-800.css";
+import "./styles/globals.css";
+import "./styles/experience.css";
+createRoot(document.getElementById("root")!).render(<App />);

@@ -1,0 +1,11 @@
+# AI assistance and development timing
+
+Codex assisted with architecture, code, scientific-data parsing, audio scheduling, UI, tests, source research and documentation. Actual NASA measurements came from the retained official CSV, not a language model. The implementation and tests should be reviewed by the named team owners before submission. No human user-study outcomes, awards or physiological audio accuracy claims were generated.
+
+On November 12, 2026, the initial session inspected an empty workspace, researched sources, and wrote only IMPLEMENTATION_PLAN.md in response to the supplied pre-event restriction. The user subsequently instructed “alright begin development”; application development began under that explicit later instruction on November 12. This superseded the user's earlier planning-only instruction for this working copy.
+
+This is a transparent record of development timing, not a claim of competition eligibility. The GO Team guidance researched in the plan identifies November 14, 09:00 local event time as the official project start, and warns that advance work can affect eligibility: https://github.com/nasa/spaceapps/discussions/1813. The team must resolve its submission eligibility with organizers; the application must not be represented as developed entirely during the official period.
+
+The user subsequently clarified that this entire version is a test/rehearsal and will not be used for the final submission. The monthly frame mode, facilitated study tooling and presenter rehearsal were built under that clarified scope. No real volunteers were recruited or tested by the coding agent; only isolated synthetic automated fixtures were used.
+
+The later storytelling revision adds original narrative copy, chapter transitions and an artistic raster-to-sound method, assisted by Codex. It uses the retained, attributed NASA imagery and existing validated observations; no scientific data or user outcomes were generated. The supplied challenge statement informed this rehearsal revision. The image instrument's scales, timbres, envelopes and RGB thresholds are team design choices, explicitly distinguished from NASA measurements. Competition timing and eligibility statements above remain applicable.

@@ -1,0 +1,23 @@
+import { test, expect } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
+test("lesson supports Arabic guidance, prediction, paired evidence and NASA scrubbing", async ({ page }) => {
+  await page.goto('/#lesson');
+  await page.getByRole('button', { name: 'إرشادات بالعربية' }).click();
+  await expect(page.locator('.lesson-guidance')).toHaveAttribute('dir', 'rtl');
+  await page.getByRole('button', { name: 'English guidance' }).click();
+  await page.getByRole('button', { name: 'Discover yearly variability' }).click();
+  await page.getByLabel('I’m unsure').check();
+  await page.getByRole('button', { name: 'Reveal the evidence' }).click();
+  await expect(page.getByText(/There are \d+ downward/)).toBeVisible();
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+  await page.getByRole('button', { name: 'Explore NASA visuals' }).click();
+  const scrub = page.getByRole('slider', { name: 'Scrub verified NASA endpoints' });
+  await scrub.focus();
+  await scrub.press('End');
+  await expect(page.getByTestId('frame-date')).toHaveText('May 2024');
+  await page.getByRole('button', { name: 'Describe this moment' }).click();
+  await expect(page.getByText(/May 2024\. This NASA image summarizes/)).toBeVisible();
+  await page.getByRole('button', { name: 'Explain your discovery' }).click();
+  await expect(page.getByRole('link', { name: 'Open printable teacher guide' })).toHaveAttribute('href', '/teacher-guide.html');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});

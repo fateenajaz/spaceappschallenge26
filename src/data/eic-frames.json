@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "referencePeriod": "1951–1980",
+  "units": "°C",
+  "verificationMethod": "Published, date-specific NASA stills inspected against source-page descriptions and image labels; no video frame-number-to-month formula.",
+  "reviewedOn": "2026-11-12",
+  "credit": "NASA's Scientific Visualization Studio. Visualizations: Mark SubbaRao; spiral concept: Ed Hawkins.",
+  "revisionNote": "Graphics retain their publication-time data revisions. Audio uses the matching monthly date in the pinned November 2026 GISTEMP CSV; minor historical numerical revisions are possible. No pixel-derived temperature is claimed.",
+  "frames": [
+    {
+      "id": "2023-07",
+      "year": 2023,
+      "month": 7,
+      "title": "Climate Spiral through July 2023",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5137/",
+      "assetUrl": "https://svs.gsfc.nasa.gov/vis/a000000/a005100/a005137/GISTEMP_Spiral_July_C_2160p60.01400_print.jpg",
+      "publicationDate": "2023-08-14",
+      "evidence": "The source describes the Celsius climate spiral as showing monthly anomalies through July 2023; the supplied still shows 2023 and the final arc at July.",
+      "image": "/nasa/monthly/2023-07.jpg",
+      "sha256": "2503f1b509a7cf673fccabc8e85f5433084650f47d838b3da3368a42e62a33c5",
+      "retrievedAt": "2026-11-12T18:11:37.088Z"
+    },
+    {
+      "id": "2023-08",
+      "year": 2023,
+      "month": 8,
+      "title": "Climate Spiral through August 2023",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5161/",
+      "assetUrl": "https://svs.gsfc.nasa.gov/vis/a000000/a005100/a005161/GISTEMP_Spiral_Aug2023_English_degC_2160p60.01400_print.jpg",
+      "publicationDate": "2023-09-14",
+      "evidence": "The source explicitly describes the August Celsius spiral through August 2023 and tags the item Earth Information Center. The still shows the year 2023 and the final arc at August.",
+      "image": "/nasa/monthly/2023-08.jpg",
+      "sha256": "d76bce5f0b525c2b8b9ca314a146b3379de45296020b32c5f6175c6cbc84c9d8",
+      "retrievedAt": "2026-11-12T18:11:32.896Z"
+    },
+    {
+      "id": "2024-05",
+      "year": 2024,
+      "month": 5,
+      "title": "Monthly temperature record through May 2024",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5311/",
+      "assetUrl": "https://svs.gsfc.nasa.gov/vis/a000000/a005300/a005311/GISTEMP_Lines_Rotate_2024_degC.00875_print.jpg",
+      "publicationDate": "2024-07-17",
+      "evidence": "The source explicitly describes the Celsius graph through May 2024 and tags the item Earth Information Center. The still is the completed monthly line graph and labels the 1951–1980 reference period.",
+      "image": "/nasa/monthly/2024-05.jpg",
+      "sha256": "a4388196d957cae62fc185c1dc09a958e38708c9e4a8ac21540e6ce7b769dde6",
+      "retrievedAt": "2026-11-12T18:11:32.660Z"
+    }
+  ]
+}

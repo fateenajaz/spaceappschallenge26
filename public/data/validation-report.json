@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "sourceUrl": "https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv",
+  "rawSha256": "a7b1939db2e7e484c798e925e0f07f8184356c52ac0e7ce264adcd0f25e81253",
+  "retrievedAt": "2026-11-12T16:52:49.111Z",
+  "asOfYear": 2026,
+  "processingVersion": "1.1.0",
+  "rowCount": 146,
+  "firstYear": 1880,
+  "lastYear": 2025,
+  "units": "°C",
+  "referencePeriod": "1951–1980",
+  "domain": [
+    -0.48,
+    1.28
+  ],
+  "monthlyRowCount": 1752,
+  "monthlyDomain": {
+    "min": -0.81,
+    "max": 1.48
+  },
+  "excluded": [
+    {
+      "year": 2026,
+      "reason": "Current or future calendar year"
+    }
+  ],
+  "checks": [
+    "Header by name",
+    "All numeric cells validated",
+    "No duplicate years",
+    "Complete months and J-D",
+    "Past calendar years only",
+    "Contiguous coverage from 1880",
+    "Celsius values preserved",
+    "Two complete non-overlapping 30-year periods"
+  ]
+}

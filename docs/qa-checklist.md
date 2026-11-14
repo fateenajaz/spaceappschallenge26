@@ -54,7 +54,7 @@ Automated checks only verify FFT/PCM buffers. Verify with real speakers and head
 
 - [ ] **Data & baseline:** 1951–1980 reference period, °C units, and 2026 exclusion are clearly explained.
 - [ ] **NASA credits:** NASA GISTEMP v4 and NASA SVS Climate Spiral (Mark SubbaRao & Ed Hawkins) are visibly credited.
-- [ ] **No rehearsal placeholders:** Remove any `"Rehearsal build"` notices from UI and `README.md` before final submission.
+- [ ] **Development timing and eligibility:** Keep the rehearsal label and development history accurate. Obtain organizer clarification before reusing this pre-event prototype; change submission labels only when the actual eligibility and build provenance support it.
 - [ ] **Volunteer pilot (`/#study`):** Run 5–12 real sessions and record actual observations in `docs/pilot-report.md` (never mix synthetic test data).
 - [ ] **AI disclosure:** Confirm `docs/ai-usage.md` reflects final work for NASA Space Apps rules.
 - [ ] **Production URL check:** Open the final Vercel URL in an **incognito window on a second device** (no login/auth required, audio works, all links work), and run:

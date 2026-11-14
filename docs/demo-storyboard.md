@@ -3,7 +3,7 @@
 Owner: **Vishal** (Testing, Documentation, Demo & Submission Support)  
 References: `ECHO EARTH.pdf` §16 (30-second concept), `docs/demo.md` (2-minute `/#present` rehearsal)
 
-> **Critical Audio Rule:** The actual generated NASA sonification tones **must be clearly audible** in the recording. Do not drown them out with narration or background music.
+> **Critical Audio Rule:** The project’s tones generated from NASA source material **must be clearly audible** in the recording. Do not drown them out with narration or background music.
 
 ---
 
@@ -14,9 +14,9 @@ References: `ECHO EARTH.pdf` §16 (30-second concept), `docs/demo.md` (2-minute 
 | Time | Visual on Screen | Audio / Sound | Voiceover / Caption |
 | --- | --- | --- | --- |
 | **0:00 – 0:05** | ECHO EARTH Introduction screen | Silence / clean entry | *"Climate data is everywhere. But what if we could hear it?"* |
-| **0:05 – 0:12** | Blind Listening Test: Audio Card A & Card B | **Play 2–3s of Period A, then 2–3s of Period B** (let the pitch difference be heard clearly) | *"ECHO EARTH turns real NASA temperature observations into sound."* |
+| **0:05 – 0:12** | Blind Listening Test: Audio Card A & Card B | **Use clearly labeled 2–3s excerpts of each real period**; full comparisons take about 9 seconds per period at normal speed | *"ECHO EARTH turns real NASA temperature observations into sound."* |
 | **0:12 – 0:20** | Select an answer → Submit → **Scientific Reveal** appears with period dates & mean anomalies | Brief pause for clarity | *"Visitors hear the data first, then discover what it tells us about Earth's changing climate."* |
-| **0:20 – 0:27** | **Historical Climate Explorer** + NASA Climate Spiral + live year/anomaly/frequency readout | **Play a short sweep of historical tones** synced to the chart | *"Every tone is generated from a documented scientific measurement."* |
+| **0:20 – 0:27** | **NASA image instrument** scanning an inspected SVS 5161 or SVS 5311 image | **Play a short excerpt of the actual image-derived sound**, synchronized to the spatial scan | *"Explore the image as sound, then inspect the measurements behind the science."* |
 | **0:27 – 0:30** | End card / project title | Clean fade | *"ECHO EARTH — Hear what the planet is telling us."* |
 
 ---
@@ -41,3 +41,5 @@ Use the built-in presenter mode at `/#present` (6 stage budgets totaling 120 sec
 - [ ] **Audio routing:** Capture system audio cleanly so the Web Audio sine tones are crisp and louder than background noise; pause narration while tones play.
 - [ ] **Real data only:** Use the production/final build (`npm run build && npm run preview` or final Vercel URL) — never mock screens.
 - [ ] **Post-export check:** Watch the exported `.mp4` with headphones and laptop speakers to verify sync, legibility, and audio clarity.
+
+The image instrument translates rendered pixels artistically; the annual comparison translates numerical anomalies. Explain this distinction and do not imply that spatial scan position is a date or that image-derived notes are recovered temperatures. Preserve credits and development provenance in the submission.

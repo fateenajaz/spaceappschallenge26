@@ -369,9 +369,6 @@ export function ListeningTest({
           )}
           {!embedded && (
             <div className="reveal-actions">
-              <a className="button primary" href="#explorer">
-                Explore 140+ Years <ArrowRight size={18} />
-              </a>
               <button
                 className="button secondary"
                 onClick={() => {

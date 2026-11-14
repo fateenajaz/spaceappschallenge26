@@ -207,7 +207,7 @@ export function ImageJukebox({ compact = false }: { compact?: boolean }) {
               setSelected(i);
             }}
           >
-            {i === 0 ? "01 / The climate spiral" : "02 / The monthly record"}
+            {i === 0 ? "Climate spiral" : "Monthly record"}
           </button>
         ))}
       </div>
@@ -248,9 +248,6 @@ export function ImageJukebox({ compact = false }: { compact?: boolean }) {
           </figcaption>
         </figure>
         <div className="image-score-copy">
-          {!compact && (
-            <p className="story-eyebrow">THE IMAGE BECOMES THE INSTRUMENT</p>
-          )}
           <h2>{source.title}</h2>
           {!compact && (
             <p>

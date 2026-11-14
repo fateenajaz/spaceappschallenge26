@@ -12,43 +12,26 @@ const chapters = [
   {
     label: "Our home",
     title: "A planet worth listening to.",
-    next: "Begin the journey",
-    bridge:
-      "We know Earth through images. Let’s begin with one that holds a history.",
   },
   {
     label: "A visual language",
     title: "Every line holds a measurement.",
-    next: "Give the image a voice",
-    bridge:
-      "The image has a visual language. We can write a second language for the same pixels.",
   },
   {
     label: "An audible image",
     title: "Let the picture become a score.",
-    next: "Listen for a measured change",
-    bridge:
-      "An image’s shapes can become sound. Next, the measurements have their own voice.",
   },
   {
     label: "Your discovery",
     title: "What can your ears tell you?",
-    next: "Look beneath the pattern",
-    bridge:
-      "A long-term difference can coexist with a cooler individual year. Let’s inspect both.",
   },
   {
     label: "The bigger picture",
     title: "A changing climate has variations.",
-    next: "Carry the story forward",
-    bridge:
-      "The sound invites a question. The observations let you investigate it.",
   },
   {
     label: "Keep listening",
     title: "A discovery becomes a conversation.",
-    next: "Return to our home",
-    bridge: "Choose a classroom activity, inspect the method, or listen again.",
   },
 ];
 export function Story() {
@@ -98,33 +81,23 @@ export function Story() {
     <article
       className={`earth-story focused-story story-chapter-${chapter} ${leaving ? "scene-leaving" : ""}`}
     >
-      <nav className="story-index" aria-label="Story chapters">
-        <span className="story-index-label">
-          {String(chapter + 1).padStart(2, "0")} / 06{" "}
-          <span>{current.label}</span>
-        </span>
-        <ol>
-          {chapters.map((item, i) => (
-            <li key={item.label}>
-              <button
-                aria-label={`${String(i + 1).padStart(2, "0")} ${item.label}`}
-                onClick={() => go(i)}
-                aria-current={chapter === i ? "step" : undefined}
-              >
-                <span className="story-number">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span>{item.label}</span>
-              </button>
-            </li>
-          ))}
-        </ol>
-      </nav>
+      <div
+        className="journey-progress"
+        role="progressbar"
+        aria-label="Journey progress"
+        aria-valuemin={1}
+        aria-valuemax={chapters.length}
+        aria-valuenow={chapter + 1}
+        aria-valuetext={`${chapter + 1} of ${chapters.length}, ${current.label}`}
+      >
+        <span
+          style={{ width: `${((chapter + 1) / chapters.length) * 100}%` }}
+        />
+      </div>
       <div className={`story-scene story-${direction}`} key={chapter}>
         {chapter === 0 ? (
           <section className="story-opening">
             <div className="story-opening-copy">
-              <p className="story-eyebrow">NASA OBSERVATIONS. A NEW WAY IN.</p>
               <h1 ref={heading} tabIndex={-1}>
                 A planet worth
                 <br />
@@ -164,20 +137,10 @@ export function Story() {
                 </a>
               </figcaption>
             </figure>
-            <div className="story-opening-foot">
-              <span>01 — SIX CHAPTERS, ONE CONNECTED RECORD</span>
-              <a href="#listen">
-                Go directly to the listening test <ArrowRight size={14} />
-              </a>
-            </div>
           </section>
         ) : (
           <>
             <header className="story-chapter-heading">
-              <p className="story-eyebrow">
-                CHAPTER {String(chapter + 1).padStart(2, "0")} /{" "}
-                {current.label.toUpperCase()}
-              </p>
               <h1 ref={heading} tabIndex={-1}>
                 {current.title}
               </h1>
@@ -195,7 +158,6 @@ export function Story() {
                   </figcaption>
                 </figure>
                 <div>
-                  <p className="story-kicker">A RECORD, DRAWN IN CIRCLES</p>
                   <h2>
                     Months make a year.
                     <br />
@@ -208,15 +170,9 @@ export function Story() {
                     1951–1980 average.
                   </p>
                   <div className="visual-reading-key">
-                    <span>
-                      <b>01</b> Around the circle → months
-                    </span>
-                    <span>
-                      <b>02</b> Distance from the center → anomaly
-                    </span>
-                    <span>
-                      <b>03</b> Overlaid paths → the historical record
-                    </span>
+                    <span>Around the circle → months</span>
+                    <span>Distance from the center → anomaly</span>
+                    <span>Overlaid paths → the historical record</span>
                   </div>
                   <a
                     className="text-link"
@@ -238,8 +194,8 @@ export function Story() {
             {chapter === 2 && (
               <>
                 <p className="story-lead">
-                  Press Play. Follow the scanning line: image position chooses
-                  pitch, color chooses a voice.
+                  Follow the scanning line. Image position chooses pitch, and
+                  color chooses a voice.
                 </p>
                 <ImageJukebox compact />
               </>
@@ -248,9 +204,9 @@ export function Story() {
               <>
                 <div className="story-explanation">
                   <p>
-                    <strong>A new rule:</strong> here, higher pitch means a
-                    higher NASA temperature anomaly. Compare the two periods,
-                    then reveal their dates and measurements.
+                    Higher pitch now represents a higher NASA temperature
+                    anomaly. Compare the two periods, then reveal their
+                    measurements.
                   </p>
                 </div>
                 <ListeningTest compact embedded onComplete={setResult} />
@@ -289,37 +245,11 @@ export function Story() {
                   <ArrowRight aria-hidden="true" />
                   <span>NASA measurements</span>
                 </div>
-                <h2>Where will you take the next question?</h2>
-                <div className="story-next-links">
-                  <a href="#lesson">
-                    <span>
-                      Bring it to a classroom
-                      <small>
-                        Five-minute activity · English and draft Arabic guidance
-                      </small>
-                    </span>
-                    <ArrowRight />
-                  </a>
-                  <a href="#science">
-                    <span>
-                      Trace every observation
-                      <small>
-                        NASA sources, baselines, mapping and limitations
-                      </small>
-                    </span>
-                    <ArrowRight />
-                  </a>
-                  <a href="#study">
-                    <span>
-                      Help us make it more useful
-                      <small>
-                        Voluntary anonymous feedback · no learning benefit
-                        claimed
-                      </small>
-                    </span>
-                    <ArrowRight />
-                  </a>
-                </div>
+                <h2>Explore the full record.</h2>
+                <p>
+                  Continue through the historical observations, the sound
+                  mapping, and the science behind the experience.
+                </p>
                 <DetailDialog
                   label="The record behind the experience"
                   title="NASA sources and the two sound methods"
@@ -354,26 +284,37 @@ export function Story() {
         )}
       </div>
       {chapter > 0 && (
-        <div className="journey-dock">
-          {" "}
-          <footer className="story-transition">
-            <div>
-              <span className="story-kicker">
-                {chapter === 5 ? "THE STORY CONTINUES" : "WHY WE GO ON"}
-              </span>
-              <p>{current.bridge}</p>
-            </div>
-            <button
-              className="button primary large"
-              onClick={() => go(chapter === 5 ? 0 : chapter + 1)}
-            >
-              {current.next} <ArrowRight size={19} />
-            </button>
-          </footer>
-          <button className="story-back" onClick={() => go(chapter - 1)}>
-            <ArrowLeft size={16} /> Back
+        <nav
+          className="journey-dock linear-dock"
+          aria-label="Journey navigation"
+        >
+          <button
+            className="story-back"
+            onClick={() => go(chapter - 1)}
+            disabled={leaving}
+          >
+            <ArrowLeft size={16} />
+            Back
           </button>
-        </div>
+          <span className="journey-position" aria-hidden="true">
+            {chapter + 1} of {chapters.length}
+          </span>
+          {chapter === chapters.length - 1 ? (
+            <a className="button primary" href="#explorer">
+              Continue
+              <ArrowRight size={18} />
+            </a>
+          ) : (
+            <button
+              className="button primary"
+              onClick={() => go(chapter + 1)}
+              disabled={leaving}
+            >
+              Continue
+              <ArrowRight size={18} />
+            </button>
+          )}
+        </nav>
       )}
     </article>
   );

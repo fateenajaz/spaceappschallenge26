@@ -11,7 +11,7 @@ test("story connects NASA pixels, user-led sound, prediction and original measur
   );
   await page.getByRole("button", { name: "Begin the journey" }).click();
   await expect(page.getByRole("heading", { level: 1 })).toBeFocused();
-  await page.getByRole("button", { name: "Give the image a voice" }).click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
   await expect(
     page.getByRole("button", { name: "Play the NASA image" }),
   ).toBeEnabled();
@@ -35,7 +35,7 @@ test("story connects NASA pixels, user-led sound, prediction and original measur
   await expect(page.getByRole("slider", { name: "Scan position" })).toHaveValue(
     column,
   );
-  await page.getByRole("button", { name: "02 / The monthly record" }).click();
+  await page.getByRole("button", { name: "Monthly record" }).click();
   await expect(
     page.getByRole("button", { name: "Play the NASA image" }),
   ).toBeEnabled();
@@ -51,22 +51,20 @@ test("story connects NASA pixels, user-led sound, prediction and original measur
       () => document.documentElement.scrollWidth <= innerWidth,
     ),
   ).toBe(true);
-  await page
-    .getByRole("button", { name: "Listen for a measured change" })
-    .click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
   await page.getByRole("radio", { name: "I couldn’t tell" }).check();
   await page.getByRole("button", { name: "Reveal the Science" }).click();
   await expect(
     page.getByText(/The two periods’ mean anomalies differ by/),
   ).toBeVisible();
-  await page.getByRole("button", { name: "Look beneath the pattern" }).click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
   await page.getByLabel("I’m unsure").check();
   await page.getByRole("button", { name: "Reveal the evidence" }).click();
   await expect(page.getByText(/There are \d+ downward/)).toBeVisible();
-  await page.getByRole("button", { name: "Carry the story forward" }).click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
   await expect(
-    page.getByRole("link", { name: /Bring it to a classroom/ }),
-  ).toHaveAttribute("href", "#lesson");
+    page.getByRole("link", { name: "Continue", exact: true }),
+  ).toHaveAttribute("href", "#explorer");
   expect(errors).toEqual([]);
 });
 test("image failure blocks sound and reduced motion preserves chapter access", async ({
@@ -75,7 +73,8 @@ test("image failure blocks sound and reduced motion preserves chapter access", a
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.route("**/nasa/monthly/*", (route) => route.abort());
   await page.goto("/");
-  await page.getByRole("button", { name: "03 An audible image" }).click();
+  await page.getByRole("button", { name: "Begin the journey" }).click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
   await expect(
     page.getByRole("button", { name: "Play the NASA image" }),
   ).toBeDisabled();
@@ -85,9 +84,7 @@ test("image failure blocks sound and reduced motion preserves chapter access", a
       .locator(".story-scene")
       .evaluate((el) => getComputedStyle(el).animationName),
   ).toBe("none");
-  await page
-    .getByRole("button", { name: "Listen for a measured change" })
-    .click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "What can your ears",
   );
@@ -124,7 +121,8 @@ test("actual NASA pixel sound produces a signal and becomes silent when leaving 
     };
   });
   await page.goto("/");
-  await page.getByRole("button", { name: "03 An audible image" }).click();
+  await page.getByRole("button", { name: "Begin the journey" }).click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
   await expect(
     page.getByRole("button", { name: "Play the NASA image" }),
   ).toBeEnabled();
@@ -145,9 +143,7 @@ test("actual NASA pixel sound produces a signal and becomes silent when leaving 
   await expect.poll(rms).toBeLessThan(0.00001);
   await page.getByRole("button", { name: "Resume image sound" }).click();
   await expect.poll(rms).toBeGreaterThan(0.0001);
-  await page
-    .getByRole("button", { name: "Listen for a measured change" })
-    .click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
   await expect
     .poll(() =>
       page.evaluate(

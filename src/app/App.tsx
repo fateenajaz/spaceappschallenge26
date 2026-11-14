@@ -1,5 +1,5 @@
 import { Component, useEffect, useRef, useState, type ReactNode } from "react";
-import { Globe2, ArrowUpRight } from "lucide-react";
+import { Globe2 } from "lucide-react";
 import { Story } from "../features/Story";
 import { ListeningTest } from "../features/ListeningTest";
 import { Explorer } from "../features/Explorer";
@@ -11,6 +11,7 @@ import { Presenter } from "../features/Presenter";
 import { AudioStatus } from "../components/Player";
 import { AudioProvider, useAudioEngine } from "../hooks/useAudioEngine";
 import { Lesson } from "../features/Lesson";
+import { DetailDialog } from "../components/DetailDialog";
 import { RouteWayfinding } from "../components/RouteWayfinding";
 type Route =
   | "lesson"
@@ -75,27 +76,31 @@ function Shell() {
       <header
         className={`site-header ${route === "home" ? "story-site-header" : ""}`}
       >
-        <a href="#home" className="brand" aria-label="ECHO EARTH home">
+        <a href="#home" className="brand" aria-label="ECHO home">
           <Globe2 size={29} strokeWidth={1.4} />
-          <span>
-            ECHO<span className="brand-light">EARTH</span>
-          </span>
+          <span>ECHO</span>
         </a>
-        <nav aria-label="Main navigation">
-          {[
-            ["home", "The journey"],
-            ["lesson", "5-minute lesson"],
-            ["listen", "Listening Test"],
-            ["explorer", "Hear the Century"],
-            ["lab", "Sound Laboratory"],
-            ["frames", "NASA Jukebox"],
-            ["science", "The Science"],
-          ]
-            .filter(
-              ([id]) =>
-                route !== "home" || ["home", "lesson", "frames"].includes(id),
-            )
-            .map(([id, label]) => (
+        <DetailDialog
+          label="Explore"
+          title="Explore ECHO"
+          closeOnNavigate
+          onOpen={() => {
+            engine.pause();
+            window.dispatchEvent(new Event("echo-navigation"));
+          }}
+        >
+          <nav className="explore-menu" aria-label="Additional experiences">
+            {[
+              ["home", "Guided journey"],
+              ["frames", "NASA Jukebox"],
+              ["listen", "Listening Test"],
+              ["explorer", "Hear the Century"],
+              ["lab", "Sound Laboratory"],
+              ["science", "Sources and methods"],
+              ["lesson", "Classroom lesson"],
+              ["study", "Volunteer testing"],
+              ["present", "Presenter mode"],
+            ].map(([id, label]) => (
               <a
                 key={id}
                 href={`#${id}`}
@@ -104,10 +109,8 @@ function Shell() {
                 {label}
               </a>
             ))}
-        </nav>
-        <a href="#present" className="header-demo-link">
-          2-minute demo <ArrowUpRight size={14} />
-        </a>
+          </nav>
+        </DetailDialog>
       </header>
       <main
         id="main-content"
@@ -117,7 +120,6 @@ function Shell() {
       >
         <AudioStatus />
         <div className={`route-scene route-${route}`} key={route}>
-          <RouteWayfinding route={route} />
           {route === "home" ? (
             <Story />
           ) : route === "lesson" ? (
@@ -137,28 +139,11 @@ function Shell() {
           ) : (
             <Science />
           )}
+          <RouteWayfinding route={route} />
         </div>
       </main>
-      <footer className="site-footer">
-        <a href="#home" className="brand footer-brand">
-          <Globe2 size={22} />
-          <span>ECHO EARTH</span>
-        </a>
-        <p>Hear what the planet is telling us.</p>
-        <a
-          href="https://www.spaceappschallenge.org/2026/challenges/the-earth-information-jukebox/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          NASA Space Apps 2026 · Dubai <ArrowUpRight size={15} />
-        </a>
-        <div className="footer-tools">
-          <a href="#present">Presenter mode</a>
-          <a href="#study">Volunteer testing</a>
-        </div>
-        <p className="footer-fine">
-          An independent educational project. NASA does not endorse ECHO EARTH.
-        </p>
+      <footer className="site-footer quiet-footer">
+        <p>An independent educational project. NASA does not endorse ECHO.</p>
       </footer>
     </>
   );

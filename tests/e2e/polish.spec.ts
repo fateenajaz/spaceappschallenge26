@@ -5,26 +5,29 @@ test("focused journey keeps controls nearby and details preserve keyboard focus"
 }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");
-  for (const name of [
-    "02 A visual language",
-    "03 An audible image",
-    "04 Your discovery",
-    "05 The bigger picture",
-    "06 Keep listening",
-  ]) {
-    await page.getByRole("button", { name, exact: true }).click();
-    await expect(page.locator(".scene-leaving")).toHaveCount(0);
-    const next = page.locator(".journey-dock .button.primary");
-    await expect(next).toBeInViewport();
+  await expect(page.locator(".story-eyebrow, .story-kicker")).toHaveCount(0);
+  await page.getByRole("button", { name: "Begin the journey" }).click();
+  for (let step = 2; step <= 6; step++) {
+    await expect(
+      page.getByRole("progressbar", { name: "Journey progress" }),
+    ).toHaveAttribute("aria-valuenow", String(step));
+    await expect(
+      page.locator(".journey-dock .button.primary"),
+    ).toBeInViewport();
     expect(
       await page.evaluate(
         () => document.documentElement.scrollHeight <= innerHeight + 2,
       ),
     ).toBe(true);
+    if (step < 6)
+      await page.getByRole("button", { name: "Continue", exact: true }).click();
   }
-  await page
-    .getByRole("button", { name: "03 An audible image", exact: true })
-    .click();
+  for (let step = 5; step >= 3; step--) {
+    await page.getByRole("button", { name: "Back", exact: true }).click();
+    await expect(
+      page.getByRole("progressbar", { name: "Journey progress" }),
+    ).toHaveAttribute("aria-valuenow", String(step));
+  }
   const details = page.getByRole("button", {
     name: "Why these sounds? Follow the translation.",
   });
@@ -53,4 +56,22 @@ test("the two jukebox methods replace each other and retain their explanation", 
   await expect(
     page.getByRole("button", { name: "Play the NASA image" }),
   ).toHaveCount(0);
+});
+
+test("secondary tools are available through one menu that closes after navigation", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(
+    page.getByRole("navigation", { name: "Additional experiences" }),
+  ).not.toBeVisible();
+  await page.getByRole("button", { name: "Explore", exact: true }).click();
+  await page
+    .getByRole("link", { name: "Sound Laboratory", exact: true })
+    .click();
+  await expect(page).toHaveURL(/#lab$/);
+  await expect(page.getByRole("dialog")).not.toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Continue", exact: true }),
+  ).toHaveAttribute("href", "#science");
 });

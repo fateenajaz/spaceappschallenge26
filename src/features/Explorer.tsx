@@ -135,9 +135,6 @@ export function Explorer({ embedded = false }: { embedded?: boolean } = {}) {
           revised between NASA releases. Our snapshot was verified{" "}
           {dataset.lastVerified}.
         </p>
-        <a className="text-link" href="#lab">
-          Inspect the measurement-to-sound calculation →
-        </a>
       </div>
     </section>
   );

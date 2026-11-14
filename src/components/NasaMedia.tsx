@@ -94,13 +94,6 @@ export function NasaMedia({ compact = false }: { compact?: boolean }) {
         >
           NASA’s Scientific Visualization Studio <ExternalLink size={13} />
         </a>
-        {!compact && (
-          <p>
-            <a href="#frames" className="text-link">
-              Open verified monthly frame–sound pairings →
-            </a>
-          </p>
-        )}
         <p className="credit">
           Visualization: Mark SubbaRao / NASA SVS; climate spiral concept: Ed
           Hawkins.

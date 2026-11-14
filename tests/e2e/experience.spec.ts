@@ -7,7 +7,8 @@ test("listen, pause, reveal, explore, and inspect the mapping", async ({
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
-  await page.getByRole("link", { name: "Go directly to the listening test" }).click();
+  await page.getByRole("button", { name: "Explore", exact: true }).click();
+  await page.getByRole("link", { name: "Listening Test", exact: true }).click();
   await expect(
     page.getByRole("heading", { name: "Listen before you look." }),
   ).toBeVisible();
@@ -34,7 +35,7 @@ test("listen, pause, reveal, explore, and inspect the mapping", async ({
   await expect(
     page.getByText("Sound A ·", { exact: false }).first(),
   ).toBeVisible();
-  await page.getByRole("link", { name: "Explore 140+ Years" }).click();
+  await page.getByRole("link", { name: "Continue", exact: true }).click();
   await expect(page.getByTestId("active-year")).toHaveText("1880");
   await page.getByRole("button", { name: "Next year" }).click();
   await expect(page.getByTestId("active-year")).toHaveText("1881");
@@ -65,9 +66,7 @@ test("listen, pause, reveal, explore, and inspect the mapping", async ({
   await page
     .getByRole("button", { name: "Stop playback", exact: true })
     .click();
-  await page
-    .getByRole("link", { name: "Sound Laboratory", exact: true })
-    .click();
+  await page.getByRole("link", { name: "Continue", exact: true }).click();
   await page.getByLabel("Select year", { exact: true }).selectOption("144");
   const r = data.records[144],
     minimum = Math.min(...data.records.map((r) => r.anomalyC)),

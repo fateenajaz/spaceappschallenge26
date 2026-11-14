@@ -129,19 +129,19 @@ export function Presenter() {
           </button>
         </div>
       </div>
-      <nav className="demo-stages" aria-label="Presentation stages">
-        {demoStages.map((s, i) => (
-          <button
-            key={s.label}
-            aria-current={stage === i ? "step" : undefined}
-            disabled={i === 2 && !result}
-            onClick={() => go(i)}
-          >
-            <span>{i + 1}</span>
-            {s.label}
-          </button>
-        ))}
-      </nav>
+      <div
+        className="journey-progress lesson-progress"
+        role="progressbar"
+        aria-label="Presentation progress"
+        aria-valuemin={1}
+        aria-valuemax={demoStages.length}
+        aria-valuenow={stage + 1}
+        aria-valuetext={current.title}
+      >
+        <span
+          style={{ width: `${((stage + 1) / demoStages.length) * 100}%` }}
+        />
+      </div>
       <details className="presenter-cue" open>
         <summary>Presenter cue — {current.seconds} seconds</summary>
         <p>{current.cue}</p>
@@ -209,7 +209,6 @@ export function Presenter() {
             report actual counts, difficulties and changes made. If the pilot
             has not happened, say so and describe the planned evaluation.
           </p>
-          <a href="#study">Open volunteer testing</a>
         </section>
       )}
       {stage === 5 && (
@@ -220,7 +219,6 @@ export function Presenter() {
             sources and a printable teacher guide. The next step is an
             educator-led pilot.
           </p>
-          <a href="#lesson">Open the classroom activity</a>
         </section>
       )}
       <div className="demo-navigation">
@@ -248,8 +246,8 @@ export function Presenter() {
             Next stage <ArrowRight size={17} />
           </button>
         ) : (
-          <a className="button primary" href="#study">
-            Run a volunteer session <ArrowRight size={17} />
+          <a className="button primary" href="#home">
+            Finish <ArrowRight size={17} />
           </a>
         )}
       </div>

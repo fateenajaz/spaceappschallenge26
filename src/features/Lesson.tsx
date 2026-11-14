@@ -42,21 +42,17 @@ export function Lesson() {
           ? "الإرشادات بالعربية؛ أدوات ناسا والمقارنة باللغة الإنجليزية. الترجمة مسودة تحتاج مراجعة معلّم."
           : "Arabic lesson guidance is available; NASA and comparison controls remain in English. Translation awaits educator review."}
       </p>
-      <nav className="demo-stages" aria-label="Lesson steps">
-        {titles.map((title, i) => (
-          <button
-            key={i}
-            aria-current={stage === i ? "step" : undefined}
-            onClick={() => {
-              engine.stop();
-              setStage(i);
-            }}
-          >
-            <span>{i + 1}</span>
-            {title}
-          </button>
-        ))}
-      </nav>
+      <div
+        className="journey-progress lesson-progress"
+        role="progressbar"
+        aria-label="Lesson progress"
+        aria-valuemin={1}
+        aria-valuemax={4}
+        aria-valuenow={stage + 1}
+        aria-valuetext={titles[stage]}
+      >
+        <span style={{ width: `${((stage + 1) / 4) * 100}%` }} />
+      </div>
       <div className="lesson-stage" key={stage}>
         <div
           lang={arabic ? "ar" : "en"}
@@ -101,9 +97,6 @@ export function Lesson() {
             >
               Open printable teacher guide
             </a>{" "}
-            <a className="button primary" href="#study">
-              Run an anonymous volunteer session
-            </a>
           </div>
         )}
       </div>
@@ -121,13 +114,13 @@ export function Lesson() {
         <span> {stage + 1} / 4 </span>
         <button
           className="button primary"
-          disabled={stage === 3}
           onClick={() => {
             engine.stop();
-            setStage(stage + 1);
+            if (stage === 3) window.location.hash = "study";
+            else setStage(stage + 1);
           }}
         >
-          Next step
+          {stage === 3 ? "Continue" : "Next step"}
         </button>
       </nav>
     </section>

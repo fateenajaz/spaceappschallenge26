@@ -65,6 +65,12 @@ test("story connects NASA pixels, user-led sound, prediction and original measur
   await expect(
     page.getByRole("link", { name: "Continue", exact: true }),
   ).toHaveAttribute("href", "#explorer");
+  await page.getByRole("link", { name: "Continue", exact: true }).click();
+  await expect(page).toHaveURL(/#explorer$/);
+  await page.getByRole("link", { name: "Back", exact: true }).click();
+  await expect(
+    page.getByRole("progressbar", { name: "Journey progress" }),
+  ).toHaveAttribute("aria-valuenow", "6");
   expect(errors).toEqual([]);
 });
 test("image failure blocks sound and reduced motion preserves chapter access", async ({

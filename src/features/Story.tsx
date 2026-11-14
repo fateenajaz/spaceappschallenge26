@@ -34,13 +34,26 @@ const chapters = [
     title: "A discovery becomes a conversation.",
   },
 ];
+function chapterFromLocation() {
+  const match = window.location.hash.match(/^#home\/(\d+)$/);
+  const index = match ? Number(match[1]) : 0;
+  return index >= 0 && index < chapters.length ? index : 0;
+}
 export function Story() {
-  const [chapter, setChapter] = useState(0),
+  const [chapter, setChapter] = useState(chapterFromLocation),
     [direction, setDirection] = useState("forward");
   const [result, setResult] = useState<ListeningResult | null>(null);
   const heading = useRef<HTMLHeadingElement>(null),
     first = useRef(true);
   const engine = useAudioEngine();
+  useEffect(() => {
+    const restore = () => {
+      if (window.location.hash.startsWith("#home"))
+        setChapter(chapterFromLocation());
+    };
+    window.addEventListener("hashchange", restore);
+    return () => window.removeEventListener("hashchange", restore);
+  }, []);
   const [leaving, setLeaving] = useState(false);
   const transition = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(
@@ -71,6 +84,11 @@ export function Story() {
     setLeaving(true);
     const commit = () => {
       setChapter(next);
+      window.history.replaceState(
+        null,
+        "",
+        next === 0 ? "#home" : `#home/${next}`,
+      );
       if (next === 3) setResult(null);
       setLeaving(false);
     };

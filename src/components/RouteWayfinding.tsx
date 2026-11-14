@@ -2,7 +2,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 const destinations: Record<string, { previous: string; next: string }> = {
   frames: { previous: "home", next: "listen" },
   listen: { previous: "frames", next: "explorer" },
-  explorer: { previous: "home", next: "lab" },
+  explorer: { previous: "home/5", next: "lab" },
   lab: { previous: "explorer", next: "science" },
   science: { previous: "lab", next: "lesson" },
   lesson: { previous: "science", next: "study" },

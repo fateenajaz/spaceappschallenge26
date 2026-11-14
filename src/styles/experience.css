@@ -379,3 +379,5 @@
 }
 .quiet-footer.site-footer p { color: #5a6c76; }
 .home-main ~ .site-footer.quiet-footer { display: none; }
+.site-header .brand { order: 0; }
+.site-header > .detail-trigger { order: 1; }
